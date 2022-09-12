@@ -12,7 +12,7 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 400,
-      margin: kmargin15,
+      margin: kmarginRL15,
       padding: kpadding8,
       decoration: BoxDecoration(
           color: Colors.purple.shade700,

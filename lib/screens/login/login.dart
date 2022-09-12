@@ -1,8 +1,9 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
-import 'package:lottie/lottie.dart';
 import 'package:movies_app_with_bloc/constents.dart';
+import 'package:movies_app_with_bloc/screens/login/widgets/signin_options.dart';
 import 'package:movies_app_with_bloc/screens/widgets/custom_button.dart';
-import 'package:flutter_signin_button/flutter_signin_button.dart';
 
 class Loginpage extends StatelessWidget {
   const Loginpage({super.key});
@@ -17,10 +18,15 @@ class Loginpage extends StatelessWidget {
             Column(
               children: [
                 Container(
-                    width: double.infinity,
-                    height: MediaQuery.of(context).size.height / 2,
-                    decoration: BoxDecoration(color: Colors.grey.shade300),
-                    child: Lottie.asset(logInImage)),
+                  width: double.infinity,
+                  height: MediaQuery.of(context).size.height / 2,
+                  decoration: BoxDecoration(color: Colors.grey.shade300),
+                  child: Image.asset(
+                    "assets/images/famtv.jpg",
+                    fit: BoxFit.cover,
+                  ),
+                  //  Lottie.asset(logInImage),
+                ),
                 Container(
                   width: double.infinity,
                   height: MediaQuery.of(context).size.height / 2,
@@ -38,12 +44,11 @@ class Loginpage extends StatelessWidget {
                   const Text(
                     "Hi!",
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.black,
                       fontSize: 40,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  kheight20,
                   Container(
                     width: 370,
                     height: 500,
@@ -55,12 +60,13 @@ class Loginpage extends StatelessWidget {
                         kheight50,
                         Container(
                           padding: kpadding8,
-                          margin: kmargin15,
+                          margin: kmarginRL15,
                           decoration: BoxDecoration(
                               color: Colors.white,
                               // border: Border.all(),
                               borderRadius: BorderRadius.circular(10)),
                           child: TextFormField(
+                            keyboardType: TextInputType.emailAddress,
                             decoration: const InputDecoration(
                               contentPadding: EdgeInsets.only(left: 5),
                               hintText: "Email",
@@ -68,34 +74,48 @@ class Loginpage extends StatelessWidget {
                             ),
                           ),
                         ),
+                        kheight20,
                         const CustomButton(
                           name: "Continue",
                         ),
                         kheight10,
                         const Text("OR"),
                         kheight10,
-                        SignInButton(
-                          Buttons.FacebookNew,
-                          elevation: 0,
-                          padding: kpadding8,
-                          text: "Continue with Facebook",
-                          onPressed: () {},
+                        const SigninOptions(),
+                        Row(
+                          children: const [
+                            Padding(
+                              padding: EdgeInsets.only(top: 15, left: 15),
+                              child: Text(
+                                "Don't have an account?",
+                                style: TextStyle(fontSize: 20),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(top: 15, left: 5),
+                              child: Text(
+                                "Sign up",
+                                style: TextStyle(
+                                    color: Colors.purple,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20),
+                              ),
+                            ),
+                          ],
                         ),
-                        kheight10,
-                        SignInButton(
-                          Buttons.Google,
-                          elevation: 0,
-                          padding: kpadding8,
-                          text: "Continue with Facebook",
-                          onPressed: () {},
-                        ),
-                        kheight10,
-                        SignInButton(
-                          Buttons.AppleDark,
-                          elevation: 0,
-                          padding: kpadding8,
-                          text: "Continue with Facebook",
-                          onPressed: () {},
+                        Row(
+                          children: const [
+                            Padding(
+                              padding: EdgeInsets.only(top: 15, left: 15),
+                              child: Text(
+                                "Forgot your password?",
+                                style: TextStyle(
+                                    color: Colors.purple,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18),
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
