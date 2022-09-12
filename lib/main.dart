@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app_with_bloc/screens/login/login.dart';
 import 'package:movies_app_with_bloc/screens/login/login_pass.dart';
+import 'package:movies_app_with_bloc/screens/sign_up/sign_up.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const Loginpage(),
+      home: const SignUp(),
     );
   }
 }
