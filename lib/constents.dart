@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 const logInImage = "assets/images/movie.json";
 const famtv = "assets/images/famtv.jpg";
+const user = "assets/images/user.jpg";
 
 //heights,widths,margin,padding
 const kheight50 = SizedBox(height: 50);

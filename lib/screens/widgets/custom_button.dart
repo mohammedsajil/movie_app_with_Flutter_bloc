@@ -3,8 +3,10 @@ import 'package:movies_app_with_bloc/constents.dart';
 
 class CustomButton extends StatelessWidget {
   final String name;
+  final VoidCallback onpressed;
   const CustomButton({
     Key? key,
+    required this.onpressed,
     required this.name,
   }) : super(key: key);
 
@@ -18,7 +20,7 @@ class CustomButton extends StatelessWidget {
           color: Colors.purple.shade700,
           borderRadius: BorderRadius.circular(10)),
       child: TextButton(
-          onPressed: () {},
+          onPressed: onpressed,
           child: Text(
             name,
             style: const TextStyle(color: Colors.white),

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movies_app_with_bloc/constents.dart';
-import 'package:movies_app_with_bloc/screens/login/login_pass.dart';
 import 'package:movies_app_with_bloc/screens/login/widgets/signin_options.dart';
 import 'package:movies_app_with_bloc/screens/widgets/custom_button.dart';
 
-class Loginpage extends StatelessWidget {
-  const Loginpage({super.key});
+class Loginpass extends StatelessWidget {
+  const Loginpass({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,17 +34,17 @@ class Loginpage extends StatelessWidget {
               ],
             ), //bg end
             Positioned(
-              bottom: 20,
+              bottom: 100,
               left: 10,
               right: 10,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
                     "Log in",
                     style: GoogleFonts.combo(
                       textStyle: const TextStyle(
-                        color: Colors.black,
+                        color: Colors.white,
                         fontSize: 40,
                         fontWeight: FontWeight.bold,
                       ),
@@ -53,12 +52,47 @@ class Loginpage extends StatelessWidget {
                   ),
                   Container(
                     width: 370,
-                    height: 500,
+                    height: 350,
                     decoration: BoxDecoration(
                         color: Colors.black45.withOpacity(0.7),
                         borderRadius: BorderRadius.circular(20)),
                     child: Column(
                       children: [
+                        kheight20,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(100),
+                              child: Image.asset(
+                                user,
+                                fit: BoxFit.cover,
+                                height: 80,
+                                width: 80,
+                              ),
+                            ),
+                            kwidth10,
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'User Name',
+                                  style: GoogleFonts.combo(
+                                      textStyle: const TextStyle(
+                                          fontSize: 20,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold)),
+                                ),
+                                Text(
+                                  'User Email@Adress',
+                                  style: GoogleFonts.combo(
+                                      textStyle: const TextStyle(
+                                          fontSize: 20, color: Colors.white)),
+                                )
+                              ],
+                            )
+                          ],
+                        ),
                         kheight50,
                         Container(
                           padding: kpadding8,
@@ -68,57 +102,26 @@ class Loginpage extends StatelessWidget {
                               // border: Border.all(),
                               borderRadius: BorderRadius.circular(10)),
                           child: TextFormField(
-                            keyboardType: TextInputType.emailAddress,
-                            decoration: const InputDecoration(
-                              contentPadding: EdgeInsets.only(left: 5),
-                              hintText: "Email",
+                            obscureText: true,
+                            decoration: InputDecoration(
+                              contentPadding:
+                                  const EdgeInsets.only(left: 5, right: 10),
+                              hintText: "Password",
+                              suffixText: "view",
+                              hoverColor: Colors.purple.shade900,
                               border: InputBorder.none,
                             ),
                           ),
                         ),
                         kheight20,
                         CustomButton(
-                          onpressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const Loginpass()),
-                            );
-                          },
+                          onpressed: () {},
                           name: "Continue",
                         ),
-                        kheight10,
-                        const Text("OR"),
-                        kheight10,
-                        const SigninOptions(),
-                        Row(
-                          children: [
-                            const Padding(
-                              padding: EdgeInsets.only(top: 15, left: 15),
-                              child: Text(
-                                "Don't have an account?",
-                                style: TextStyle(fontSize: 20),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 15, left: 5),
-                              child: Text(
-                                "Sign up",
-                                style: GoogleFonts.combo(
-                                  textStyle: const TextStyle(
-                                    color: Colors.purple,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
                         Row(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(top: 15, left: 15),
+                              padding: const EdgeInsets.only(top: 40, left: 15),
                               child: Text(
                                 "Forgot your password?",
                                 style: GoogleFonts.combo(
