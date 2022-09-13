@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movies_app_with_bloc/constents.dart';
-import 'package:movies_app_with_bloc/screens/widgets/custom_button.dart';
+import 'package:movies_app_with_bloc/login_screens/widgets/custom_button.dart';
 
 class SignUp extends StatelessWidget {
   const SignUp({super.key});
