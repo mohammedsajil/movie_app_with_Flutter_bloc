@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
 
@@ -30,7 +32,7 @@ class CastCard extends StatelessWidget {
                 cast['orginalName'],
                 maxLines: 2,
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.black87),
+                style: const TextStyle(color: Colors.black87),
               ),
               SizedBox(
                 height: kDefaultPadding / 4,

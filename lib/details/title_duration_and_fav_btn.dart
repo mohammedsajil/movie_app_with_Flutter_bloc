@@ -35,7 +35,7 @@ class TitleDurationAndFabBtn extends StatelessWidget {
                   children: [
                     Text(
                       '${movie.year}',
-                      style: TextStyle(color: Colors.grey),
+                      style: const TextStyle(color: Colors.grey),
                     ),
                     SizedBox(
                       width: kDefaultPadding,

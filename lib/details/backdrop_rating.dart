@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// ignore: depend_on_referenced_packages
 import 'package:animate_do/animate_do.dart';
 import '../models/movie.dart';
 
@@ -16,7 +17,7 @@ class BackdropAndRating extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: size.height * 0.38,
       child: Stack(
         children: [
@@ -106,7 +107,7 @@ class BackdropAndRating extends StatelessWidget {
                         Container(
                           padding: EdgeInsets.all(kDefaultPadding / 5),
                           decoration: BoxDecoration(
-                            color: Color(0xFF51CF66),
+                            color: const Color(0xFF51CF66),
                             borderRadius: BorderRadius.circular(3),
                           ),
                           child: Text(

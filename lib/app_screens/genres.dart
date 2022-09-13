@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 
 import 'genre_card.dart';
@@ -19,7 +21,7 @@ class Genres extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: kDefaultPadding / 2),
       height: kDefaultPadding / 0.51,
       child: ListView.builder(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           scrollDirection: Axis.horizontal,
           itemCount: genres.length,
           itemBuilder: (context, index) => Genrescard(gnere: genres[index])),
