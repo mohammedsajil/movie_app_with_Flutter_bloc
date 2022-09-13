@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app_with_bloc/login_screens/login/login.dart';
+import 'package:movies_app_with_bloc/screens/login_screens/login/login.dart';
 import 'package:movies_app_with_bloc/screens/sign_up/sign_up.dart';
 
 void main() {

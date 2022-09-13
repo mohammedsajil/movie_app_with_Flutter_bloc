@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:movies_app_with_bloc/app_screens/home_screen.dart';
 import 'package:movies_app_with_bloc/constents.dart';
 import 'package:movies_app_with_bloc/screens/login_screens/widgets/custom_button.dart';
 
-class SignUp extends StatelessWidget {
-  const SignUp({super.key});
+class Loginpass extends StatelessWidget {
+  const Loginpass({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,7 @@ class SignUp extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    "Sign up",
+                    "Log in",
                     style: GoogleFonts.combo(
                       textStyle: const TextStyle(
                         color: Colors.white,
@@ -58,37 +59,41 @@ class SignUp extends StatelessWidget {
                     child: Column(
                       children: [
                         kheight20,
-                        SizedBox(
-                          width: 300,
-                          child: Text(
-                            "Looks like you don't have an account. \nLet's Create a  new account ...",
-                            style: GoogleFonts.combo(
-                                textStyle: const TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            )),
-                          ),
-                        ),
-                        kheight20,
-                        Container(
-                          padding: kpadding8,
-                          margin: kmarginRL15,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              // border: Border.all(),
-                              borderRadius: BorderRadius.circular(10)),
-                          child: TextFormField(
-                            decoration: InputDecoration(
-                              contentPadding:
-                                  const EdgeInsets.only(left: 5, right: 10),
-                              hintText: "Email",
-                              hoverColor: Colors.purple.shade900,
-                              border: InputBorder.none,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(100),
+                              child: Image.asset(
+                                user,
+                                fit: BoxFit.cover,
+                                height: 80,
+                                width: 80,
+                              ),
                             ),
-                          ),
+                            kwidth10,
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'User Name',
+                                  style: GoogleFonts.combo(
+                                      textStyle: const TextStyle(
+                                          fontSize: 20,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold)),
+                                ),
+                                Text(
+                                  'User Email@Adress',
+                                  style: GoogleFonts.combo(
+                                      textStyle: const TextStyle(
+                                          fontSize: 20, color: Colors.white)),
+                                )
+                              ],
+                            )
+                          ],
                         ),
-                        kheight10,
+                        kheight50,
                         Container(
                           padding: kpadding8,
                           margin: kmarginRL15,
@@ -109,42 +114,32 @@ class SignUp extends StatelessWidget {
                           ),
                         ),
                         kheight20,
-                        Text(
-                          "By selecting Agree and continue  below,",
-                          style: GoogleFonts.combo(
-                              textStyle: const TextStyle(
-                            fontSize: 18,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          )),
+                        CustomButton(
+                          onpressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const HomeScreen()),
+                            );
+                          },
+                          name: "Continue",
                         ),
                         Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            Text(
-                              "  I agree to",
-                              style: GoogleFonts.combo(
+                            Padding(
+                              padding: const EdgeInsets.only(top: 40, left: 15),
+                              child: Text(
+                                "Forgot your password?",
+                                style: GoogleFonts.combo(
                                   textStyle: const TextStyle(
-                                fontSize: 18,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              )),
-                            ),
-                            Text(
-                              "Terms of  Service and Privacy Policy",
-                              style: GoogleFonts.combo(
-                                  textStyle: const TextStyle(
-                                fontSize: 18,
-                                color: Colors.purple,
-                                fontWeight: FontWeight.bold,
-                              )),
+                                    color: Colors.purple,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
                             ),
                           ],
-                        ),
-                        kheight20,
-                        CustomButton(
-                          onpressed: () {},
-                          name: "Agree and continue",
                         ),
                       ],
                     ),

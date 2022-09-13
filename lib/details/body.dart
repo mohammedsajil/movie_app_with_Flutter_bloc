@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:movies_app_with_bloc/details/title_duration_and_fav_btn.dart';
