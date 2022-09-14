@@ -1,25 +1,22 @@
-import 'dart:developer';
-
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movies_app_with_bloc/screens/app_screens/home_screen.dart';
 import 'package:movies_app_with_bloc/constents.dart';
+import 'package:movies_app_with_bloc/screens/login/login.dart';
 import 'package:movies_app_with_bloc/screens/widgets/custom_button.dart';
 
-class SignUp extends StatefulWidget {
-  const SignUp({super.key});
+class Loginpass extends StatefulWidget {
+  const Loginpass({super.key});
 
   @override
-  State<SignUp> createState() => _SignUpState();
+  State<Loginpass> createState() => _LoginpassState();
 }
 
-class _SignUpState extends State<SignUp> {
-  late String email;
+class _LoginpassState extends State<Loginpass> {
   late String password;
   final _auth = FirebaseAuth.instance;
-  bool _showpassword = false;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +51,7 @@ class _SignUpState extends State<SignUp> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    "Sign up",
+                    "Log in",
                     style: GoogleFonts.combo(
                       textStyle: const TextStyle(
                         color: Colors.white,
@@ -72,41 +69,41 @@ class _SignUpState extends State<SignUp> {
                     child: Column(
                       children: [
                         kheight20,
-                        SizedBox(
-                          width: 300,
-                          child: Text(
-                            "Looks like you don't have an account. \nLet's Create a  new account ...",
-                            style: GoogleFonts.combo(
-                                textStyle: const TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            )),
-                          ),
-                        ),
-                        kheight20,
-                        Container(
-                          padding: kpadding8,
-                          margin: kmarginRL15,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              // border: Border.all(),
-                              borderRadius: BorderRadius.circular(10)),
-                          child: TextFormField(
-                            // textAlign: TextAlign.center,
-                            onChanged: (value) {
-                              email = value;
-                            },
-                            decoration: InputDecoration(
-                              contentPadding:
-                                  const EdgeInsets.only(left: 5, right: 10),
-                              hintText: "Email",
-                              hoverColor: Colors.purple.shade900,
-                              border: InputBorder.none,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(100),
+                              child: Image.asset(
+                                user,
+                                fit: BoxFit.cover,
+                                height: 80,
+                                width: 80,
+                              ),
                             ),
-                          ),
+                            kwidth10,
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'User Name',
+                                  style: GoogleFonts.combo(
+                                      textStyle: const TextStyle(
+                                          fontSize: 20,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold)),
+                                ),
+                                Text(
+                                  email!,
+                                  style: GoogleFonts.combo(
+                                      textStyle: const TextStyle(
+                                          fontSize: 20, color: Colors.white)),
+                                )
+                              ],
+                            )
+                          ],
                         ),
-                        kheight10,
+                        kheight50,
                         Container(
                           padding: kpadding8,
                           margin: kmarginRL15,
@@ -115,74 +112,28 @@ class _SignUpState extends State<SignUp> {
                               // border: Border.all(),
                               borderRadius: BorderRadius.circular(10)),
                           child: TextFormField(
-                            // textAlign: TextAlign.center,
                             onChanged: (value) {
                               password = value;
                             },
-                            obscureText: !_showpassword,
+                            obscureText: true,
                             decoration: InputDecoration(
-                              contentPadding: const EdgeInsets.only(
-                                  left: 5, right: 5, top: 10),
+                              contentPadding:
+                                  const EdgeInsets.only(left: 5, right: 10),
                               hintText: "Password",
-                              suffixIcon: IconButton(
-                                  onPressed: () {
-                                    setState(
-                                        () => _showpassword = !_showpassword);
-                                  },
-                                  icon: Icon(
-                                      _showpassword
-                                          ? Icons.visibility
-                                          : Icons.visibility_off,
-                                      color: _showpassword
-                                          ? Colors.blue
-                                          : Colors.grey)),
+                              suffixText: "view",
                               hoverColor: Colors.purple.shade900,
                               border: InputBorder.none,
                             ),
                           ),
-                        ),
-                        kheight20,
-                        Text(
-                          "By selecting Agree and continue  below,",
-                          style: GoogleFonts.combo(
-                              textStyle: const TextStyle(
-                            fontSize: 18,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                          )),
-                        ),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              "  I agree to",
-                              style: GoogleFonts.combo(
-                                  textStyle: const TextStyle(
-                                fontSize: 18,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              )),
-                            ),
-                            Text(
-                              "Terms of  Service and Privacy Policy",
-                              style: GoogleFonts.combo(
-                                  textStyle: const TextStyle(
-                                fontSize: 18,
-                                color: Colors.purple,
-                                fontWeight: FontWeight.bold,
-                              )),
-                            ),
-                          ],
                         ),
                         kheight20,
                         CustomButton(
                           onpressed: () async {
-                            // log(email);
-                            // log(password);
                             try {
                               final newUser =
-                                  await _auth.createUserWithEmailAndPassword(
-                                      email: email, password: password);
+                                  await _auth.signInWithEmailAndPassword(
+                                      email: email!.trim(),
+                                      password: password.trim());
                               if (newUser != null) {
                                 // ignore: use_build_context_synchronously
                                 Navigator.push(
@@ -192,9 +143,6 @@ class _SignUpState extends State<SignUp> {
                                             const HomeScreen()));
                               }
                             } on FirebaseAuthException catch (e) {
-                              // print("#############");
-                              // print(e);
-                              // print("#############");
                               showDialog<String>(
                                 context: context,
                                 builder: (BuildContext context) => AlertDialog(
@@ -215,7 +163,24 @@ class _SignUpState extends State<SignUp> {
                               );
                             }
                           },
-                          name: "Agree and continue",
+                          name: "Continue",
+                        ),
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 40, left: 15),
+                              child: Text(
+                                "Forgot your password?",
+                                style: GoogleFonts.combo(
+                                  textStyle: const TextStyle(
+                                    color: Colors.purple,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),

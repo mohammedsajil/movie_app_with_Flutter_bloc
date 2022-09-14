@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app_with_bloc/app_screens/genre_card.dart';
+import 'package:movies_app_with_bloc/screens/app_screens/genre_card.dart';
 
 import '../models/movie.dart';
 
