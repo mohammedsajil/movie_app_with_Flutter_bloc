@@ -5,6 +5,7 @@ import 'package:movies_app_with_bloc/screens/login/login_pass.dart';
 import 'package:movies_app_with_bloc/screens/login/widgets/signin_options.dart';
 import 'package:movies_app_with_bloc/screens/sign_up/sign_up.dart';
 import 'package:movies_app_with_bloc/screens/widgets/custom_button.dart';
+import 'package:email_validator/email_validator.dart';
 
 String? email;
 
@@ -16,6 +17,7 @@ class Loginpage extends StatefulWidget {
 }
 
 class _LoginpageState extends State<Loginpage> {
+  // bool isValid = EmailValidator.validate(email ?? '');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,6 +82,12 @@ class _LoginpageState extends State<Loginpage> {
                               email = value;
                             },
                             keyboardType: TextInputType.emailAddress,
+                            // validator: (value) {
+                            //   if (value == null || value.isEmpty) {
+                            //     alert(context);
+                            //   }
+                            //   return null;
+                            // },
                             decoration: const InputDecoration(
                               contentPadding: EdgeInsets.only(left: 5),
                               hintText: "Email",
@@ -90,11 +98,34 @@ class _LoginpageState extends State<Loginpage> {
                         kheight20,
                         CustomButton(
                           onpressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const Loginpass()),
-                            );
+                            if (email == null || email!.isEmpty) {
+                              final snackBar = SnackBar(
+                                content: const Text('Please Enter Valid Email'),
+                                action: SnackBarAction(
+                                  label: 'ok',
+                                  onPressed: () {
+                                    // Some code to undo the change.
+                                  },
+                                ),
+                              );
+                              // Find the ScaffoldMessenger in the widget tree
+                              // and use it to show a SnackBar.
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
+                            }
+                            // else if (isValid = false) {
+                            //   const snackBar1 = SnackBar(
+                            //     content: Text('Please Enter Valid Email'),
+                            //   );
+                            //   ScaffoldMessenger.of(context)
+                            //       .showSnackBar(snackBar1);
+                            // }
+                            else {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => const Loginpass()));
+                            }
                           },
                           name: "Continue",
                         ),

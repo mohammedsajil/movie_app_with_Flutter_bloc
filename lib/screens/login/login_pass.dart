@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:movies_app_with_bloc/screens/app_screens/home_screen.dart';
 import 'package:movies_app_with_bloc/constents.dart';
 import 'package:movies_app_with_bloc/screens/login/login.dart';
@@ -72,32 +72,34 @@ class _LoginpassState extends State<Loginpass> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(100),
-                              child: Image.asset(
-                                user,
-                                fit: BoxFit.cover,
-                                height: 80,
-                                width: 80,
-                              ),
+                            Lottie.asset(
+                              movielogo,
+                              fit: BoxFit.cover,
+                              height: 80,
+                              width: 80,
                             ),
                             kwidth10,
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  'User Name',
-                                  style: GoogleFonts.combo(
-                                      textStyle: const TextStyle(
-                                          fontSize: 20,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold)),
-                                ),
-                                Text(
-                                  email!,
-                                  style: GoogleFonts.combo(
-                                      textStyle: const TextStyle(
-                                          fontSize: 20, color: Colors.white)),
+                                // Text(
+                                //   'User Name',
+                                //   style: GoogleFonts.combo(
+                                //       textStyle: const TextStyle(
+                                //           fontSize: 20,
+                                //           color: Colors.white,
+                                //           fontWeight: FontWeight.bold)),
+                                // ),
+                                kwidth10,
+                                SizedBox(
+                                  width: 200,
+                                  child: Text(
+                                    email!,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: GoogleFonts.combo(
+                                        textStyle: const TextStyle(
+                                            fontSize: 20, color: Colors.white)),
+                                  ),
                                 )
                               ],
                             )
@@ -129,6 +131,12 @@ class _LoginpassState extends State<Loginpass> {
                         kheight20,
                         CustomButton(
                           onpressed: () async {
+                            showDialog(
+                                context: context,
+                                barrierDismissible: false,
+                                builder: (context) => const Center(
+                                      child: CircularProgressIndicator(),
+                                    ));
                             try {
                               final newUser =
                                   await _auth.signInWithEmailAndPassword(
@@ -136,7 +144,7 @@ class _LoginpassState extends State<Loginpass> {
                                       password: password.trim());
                               if (newUser != null) {
                                 // ignore: use_build_context_synchronously
-                                Navigator.push(
+                                Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
