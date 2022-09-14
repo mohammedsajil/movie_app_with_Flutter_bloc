@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:movies_app_with_bloc/app_screens/home_screen.dart';
 import 'package:movies_app_with_bloc/constents.dart';
-import 'package:movies_app_with_bloc/screens/login_screens/widgets/custom_button.dart';
+import 'package:movies_app_with_bloc/screens/login/login_pass.dart';
+import 'package:movies_app_with_bloc/screens/login/widgets/signin_options.dart';
+import 'package:movies_app_with_bloc/screens/sign_up/sign_up.dart';
+import 'package:movies_app_with_bloc/screens/widgets/custom_button.dart';
 
-class Loginpass extends StatelessWidget {
-  const Loginpass({super.key});
+String? email;
 
+class Loginpage extends StatefulWidget {
+  const Loginpage({super.key});
+
+  @override
+  State<Loginpage> createState() => _LoginpageState();
+}
+
+class _LoginpageState extends State<Loginpage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,17 +43,17 @@ class Loginpass extends StatelessWidget {
               ],
             ), //bg end
             Positioned(
-              bottom: 100,
+              bottom: 20,
               left: 10,
               right: 10,
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     "Log in",
                     style: GoogleFonts.combo(
                       textStyle: const TextStyle(
-                        color: Colors.white,
+                        color: Colors.black,
                         fontSize: 40,
                         fontWeight: FontWeight.bold,
                       ),
@@ -52,47 +61,12 @@ class Loginpass extends StatelessWidget {
                   ),
                   Container(
                     width: 370,
-                    height: 350,
+                    height: 500,
                     decoration: BoxDecoration(
                         color: Colors.black45.withOpacity(0.7),
                         borderRadius: BorderRadius.circular(20)),
                     child: Column(
                       children: [
-                        kheight20,
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(100),
-                              child: Image.asset(
-                                user,
-                                fit: BoxFit.cover,
-                                height: 80,
-                                width: 80,
-                              ),
-                            ),
-                            kwidth10,
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  'User Name',
-                                  style: GoogleFonts.combo(
-                                      textStyle: const TextStyle(
-                                          fontSize: 20,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold)),
-                                ),
-                                Text(
-                                  'User Email@Adress',
-                                  style: GoogleFonts.combo(
-                                      textStyle: const TextStyle(
-                                          fontSize: 20, color: Colors.white)),
-                                )
-                              ],
-                            )
-                          ],
-                        ),
                         kheight50,
                         Container(
                           padding: kpadding8,
@@ -102,13 +76,13 @@ class Loginpass extends StatelessWidget {
                               // border: Border.all(),
                               borderRadius: BorderRadius.circular(10)),
                           child: TextFormField(
-                            obscureText: true,
-                            decoration: InputDecoration(
-                              contentPadding:
-                                  const EdgeInsets.only(left: 5, right: 10),
-                              hintText: "Password",
-                              suffixText: "view",
-                              hoverColor: Colors.purple.shade900,
+                            onChanged: (value) {
+                              email = value;
+                            },
+                            keyboardType: TextInputType.emailAddress,
+                            decoration: const InputDecoration(
+                              contentPadding: EdgeInsets.only(left: 5),
+                              hintText: "Email",
                               border: InputBorder.none,
                             ),
                           ),
@@ -119,15 +93,52 @@ class Loginpass extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const HomeScreen()),
+                                  builder: (context) => const Loginpass()),
                             );
                           },
                           name: "Continue",
                         ),
+                        kheight10,
+                        const Text("OR"),
+                        kheight10,
+                        const SigninOptions(),
+                        Row(
+                          children: [
+                            const Padding(
+                              padding: EdgeInsets.only(top: 15, left: 15),
+                              child: Text(
+                                "Don't have an account?",
+                                style: TextStyle(fontSize: 20),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 15, left: 5),
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const SignUp()));
+                                },
+                                child: Text(
+                                  "Sign up",
+                                  style: GoogleFonts.combo(
+                                    textStyle: const TextStyle(
+                                      color: Colors.purple,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                         Row(
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(top: 40, left: 15),
+                              padding: const EdgeInsets.only(top: 15, left: 15),
                               child: Text(
                                 "Forgot your password?",
                                 style: GoogleFonts.combo(
