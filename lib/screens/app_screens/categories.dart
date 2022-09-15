@@ -11,7 +11,7 @@ class CategoryList extends StatefulWidget {
 
 class _CategoryListState extends State<CategoryList> {
   int selectedCategory = 0;
-  List<String> categories = ["In Theater", "Box Office", "Coming Soon"];
+  List<String> categories = ["Trending", "Popular", "Coming Soon"];
   double kDefaultPadding = 20.0;
   @override
   Widget build(BuildContext context) {

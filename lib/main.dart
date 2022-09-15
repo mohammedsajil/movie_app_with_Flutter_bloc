@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:movies_app_with_bloc/screens/app_screens/home_screen.dart';
 import 'package:movies_app_with_bloc/screens/login/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:movies_app_with_bloc/screens/main_page/screen_main.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
                     ),
                   );
                 } else if (snapshot.hasData) {
-                  return const HomeScreen();
+                  return ScreenMainPage();
                 } else {
                   return const Loginpage();
                 }

@@ -11,7 +11,10 @@ class Body extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          const CategoryList(),
+          const SizedBox(
+            height: 40,
+          ),
+          // const CategoryList(),
           Genres(),
           SizedBox(
             height: kDefaultPadding,
