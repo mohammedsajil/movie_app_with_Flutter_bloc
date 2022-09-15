@@ -25,7 +25,7 @@ class TitleDurationAndFabBtn extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  movie.title!,
+                  '',
                   style: TextStyle(fontSize: 22, color: Colors.grey[900]),
                 ),
                 SizedBox(
@@ -34,7 +34,7 @@ class TitleDurationAndFabBtn extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      '${movie.year}',
+                      '{movie.year}',
                       style: const TextStyle(color: Colors.grey),
                     ),
                     SizedBox(

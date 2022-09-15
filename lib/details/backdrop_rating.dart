@@ -29,7 +29,7 @@ class BackdropAndRating extends StatelessWidget {
                     bottomRight: Radius.circular(40)),
                 image: DecorationImage(
                     image: AssetImage(
-                      movie.poster!,
+                      '',
                     ),
                     fit: BoxFit.fill)),
           ),
@@ -69,7 +69,7 @@ class BackdropAndRating extends StatelessWidget {
                                 style: const TextStyle(color: Colors.black),
                                 children: [
                               TextSpan(
-                                text: '${movie.rating}/',
+                                text: '/',
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 15),
                               ),
@@ -111,7 +111,7 @@ class BackdropAndRating extends StatelessWidget {
                             borderRadius: BorderRadius.circular(3),
                           ),
                           child: Text(
-                            '${movie.metascoreRating}',
+                            '',
                             style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 15,

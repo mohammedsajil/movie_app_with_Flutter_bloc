@@ -25,14 +25,8 @@ class BottomNavigationWidget extends StatelessWidget {
           unselectedIconTheme: IconThemeData(color: Colors.grey),
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.collections), label: 'New & Hot'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.emoji_emotions), label: 'Fast Laugh'),
             BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.arrow_circle_down_outlined),
-                label: 'Downloads'),
+            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
           ],
         );
       },

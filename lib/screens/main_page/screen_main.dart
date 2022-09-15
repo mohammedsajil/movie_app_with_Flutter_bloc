@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app_with_bloc/screens/app_screens/home_screen.dart';
 import 'package:movies_app_with_bloc/screens/main_page/widgets/bottom_nav.dart';
+import 'package:movies_app_with_bloc/screens/profile_page/profile_screen.dart';
 import 'package:movies_app_with_bloc/screens/search_page/search_screen.dart';
 
 class ScreenMainPage extends StatelessWidget {
@@ -9,6 +10,7 @@ class ScreenMainPage extends StatelessWidget {
   final _pages = [
     const HomeScreen(),
     const SearchScreen(),
+    const ProfileScreen(),
   ];
   @override
   Widget build(BuildContext context) {

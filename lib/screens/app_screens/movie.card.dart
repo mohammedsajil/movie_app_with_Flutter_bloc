@@ -3,7 +3,7 @@ import '../../details/details_screen.dart';
 import '../../models/movie.dart';
 
 class MovieCard extends StatelessWidget {
-  final Movie movie;
+  final Result movie;
   const MovieCard({Key? key, required this.movie}) : super(key: key);
 
   @override
@@ -12,12 +12,12 @@ class MovieCard extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
       child: InkWell(
-        onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => DetailsScreen(
-                      movie: movie,
-                    ))),
+        // onTap: () => Navigator.push(
+        //     context,
+        //     MaterialPageRoute(
+        //         builder: (context) => DetailsScreen(
+        //               movie: movie,
+        //             ))),
         child: Column(
           children: [
             Expanded(
@@ -26,7 +26,9 @@ class MovieCard extends StatelessWidget {
                   boxShadow: const [BoxShadow(blurRadius: 4)],
                   borderRadius: BorderRadius.circular(50),
                   image: DecorationImage(
-                      image: AssetImage(movie.poster!), fit: BoxFit.fill)),
+                      image: NetworkImage(
+                          "https://image.tmdb.org/t/p/w500/${movie.posterPath!}"),
+                      fit: BoxFit.fill)),
             )),
             Padding(
               padding: EdgeInsets.symmetric(vertical: kDefaultPadding),
@@ -49,7 +51,7 @@ class MovieCard extends StatelessWidget {
                   width: kDefaultPadding / 2,
                 ),
                 Text(
-                  '${movie.rating}',
+                  '${movie.voteAverage}',
                   style: const TextStyle(color: Colors.black54),
                 )
               ],

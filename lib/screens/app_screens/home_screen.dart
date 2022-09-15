@@ -70,12 +70,12 @@ class _HomeScreenState extends State<HomeScreen> {
         },
       ),
       // Search icon
-      actions: [
-        IconButton(
-            padding: const EdgeInsets.only(right: 20),
-            onPressed: () {},
-            icon: Image.asset('assets/images/search.png'))
-      ],
+      // actions: [
+      //   IconButton(
+      //       padding: const EdgeInsets.only(right: 20),
+      //       onPressed: () {},
+      //       icon: Image.asset('assets/images/search.png'))
+      // ],
     );
   }
 }

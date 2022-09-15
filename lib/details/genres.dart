@@ -22,9 +22,9 @@ class Genress extends StatelessWidget {
         height: size.height / 20,
         child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: movie.genra?.length,
+            itemCount: 0,
             itemBuilder: (context, index) => Genrescard(
-                  gnere: movie.genra![index],
+                  gnere: '',
                 )),
       ),
     );

@@ -37,12 +37,12 @@ class BodyDetails extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
             child: Text(
-              movie.plot!,
+              '',
               style: TextStyle(color: Colors.grey[500]),
             ),
           ),
           CastAndCrew(
-            casts: movie.cast!,
+            casts: [],
           ),
         ],
       ),
