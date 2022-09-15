@@ -1,4 +1,3 @@
-// Our movie model
 class Movie {
   final int? id, year, numOfRatings, criticsReview, metascoreRating;
   final double? rating;

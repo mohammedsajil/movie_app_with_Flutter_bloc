@@ -5,6 +5,7 @@ import 'package:lottie/lottie.dart';
 import 'package:movies_app_with_bloc/screens/app_screens/home_screen.dart';
 import 'package:movies_app_with_bloc/constents.dart';
 import 'package:movies_app_with_bloc/screens/login/login.dart';
+import 'package:movies_app_with_bloc/screens/main_page/screen_main.dart';
 import 'package:movies_app_with_bloc/screens/widgets/custom_button.dart';
 
 class Loginpass extends StatefulWidget {
@@ -148,7 +149,7 @@ class _LoginpassState extends State<Loginpass> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            const HomeScreen()));
+                                            ScreenMainPage()));
                               }
                             } on FirebaseAuthException catch (e) {
                               showDialog<String>(
