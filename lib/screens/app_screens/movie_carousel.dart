@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:movies_app_with_bloc/bloc/movies/movies_bloc.dart';
 import 'dart:math' as math;
 import '../../models/movie.dart';
 import 'movie.card.dart';
@@ -17,6 +19,7 @@ class _MovieCarouselState extends State<MovieCarousel> {
   @override
   void initState() {
     super.initState();
+    BlocProvider.of<MoviesBloc>(context).add(GetCarouselMovies());
     _pageController = PageController(
       viewportFraction: 0.8,
       initialPage: initialPage,
@@ -31,23 +34,39 @@ class _MovieCarouselState extends State<MovieCarousel> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: kDefaultPadding),
-      child: AspectRatio(
-        aspectRatio: 0.85,
-        child: PageView.builder(
-            onPageChanged: (valve) {
-              initialPage = valve;
-            },
-            physics: const ClampingScrollPhysics(),
-            controller: _pageController,
-            itemCount: movies.length,
-            itemBuilder: (context, index) => buildMovieSlider(index)),
-      ),
+    return BlocBuilder<MoviesBloc, MoviesState>(
+      builder: (context, state) {
+        if (state is MoviesLoaded) {
+          return Padding(
+            padding: EdgeInsets.symmetric(vertical: kDefaultPadding),
+            child: AspectRatio(
+              aspectRatio: 0.85,
+              child: PageView.builder(
+                  onPageChanged: (valve) {
+                    initialPage = valve;
+                  },
+                  physics: const ClampingScrollPhysics(),
+                  controller: _pageController,
+                  itemCount: state.movieList.results!.length,
+                  itemBuilder: (context, index) =>
+                      buildMovieSlider(index, state.movieList.results!)),
+            ),
+          );
+        }
+        if (state is MoviesFailed) {
+          print(state.errorText);
+        }
+        if (state is MoviesInitial) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+        return Container();
+      },
     );
   }
 
-  Widget buildMovieSlider(int index) => AnimatedBuilder(
+  Widget buildMovieSlider(int index, List<Result> movies) => AnimatedBuilder(
         animation: _pageController,
         builder: (context, child) {
           double value = 0;
