@@ -15,7 +15,7 @@ class Body extends StatelessWidget {
             height: 40,
           ),
           // const CategoryList(),
-          Genres(),
+          // Genres(),
           SizedBox(
             height: kDefaultPadding,
           ),

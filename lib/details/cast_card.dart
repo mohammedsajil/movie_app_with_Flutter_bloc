@@ -16,6 +16,7 @@ class CastCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(top: 10),
         child: Container(
+          // decoration: BoxDecoration(color: Colors.blue),
           margin: EdgeInsets.only(right: kDefaultPadding),
           width: size.width / 5,
           child: Column(

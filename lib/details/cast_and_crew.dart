@@ -26,6 +26,7 @@ class CastAndCrew extends StatelessWidget {
           ),
           SizedBox(height: kDefaultPadding / 2),
           SizedBox(
+            // decoration: BoxDecoration(color: Colors.blueAccent),
             height: 160,
             child: BlocBuilder<CastBloc, CastState>(
               builder: (context, state) {

@@ -42,7 +42,7 @@ class _MovieCarouselState extends State<MovieCarousel> {
               vertical: kDefaultPadding,
             ),
             child: AspectRatio(
-              aspectRatio: 0.85,
+              aspectRatio: 0.75,
               child: PageView.builder(
                   onPageChanged: (valve) {
                     initialPage = valve;
