@@ -7,7 +7,7 @@ import 'cast_and_crew.dart';
 import 'genres.dart';
 
 class BodyDetails extends StatelessWidget {
-  final Movie movie;
+  final Result movie;
   const BodyDetails({Key? key, required this.movie}) : super(key: key);
 
   @override
@@ -23,9 +23,15 @@ class BodyDetails extends StatelessWidget {
           SizedBox(
             height: kDefaultPadding / 5,
           ),
-          TitleDurationAndFabBtn(
+
+          ///title#################
+          ///
+          TitleDurationAndFavBtn(
               kDefaultPadding: kDefaultPadding, movie: movie),
-          Genress(kDefaultPadding: kDefaultPadding, movie: movie),
+          Genress(
+            kDefaultPadding: kDefaultPadding,
+            movie: movie,
+          ),
           Padding(
             padding: EdgeInsets.symmetric(
                 vertical: kDefaultPadding / 2, horizontal: kDefaultPadding),
@@ -37,12 +43,12 @@ class BodyDetails extends StatelessWidget {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
             child: Text(
-              '',
+              movie.overview.toString(),
               style: TextStyle(color: Colors.grey[500]),
             ),
           ),
           CastAndCrew(
-            casts: [],
+            movieId: movie.id.toString(),
           ),
         ],
       ),

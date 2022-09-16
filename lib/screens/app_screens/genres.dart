@@ -27,4 +27,6 @@ class Genres extends StatelessWidget {
           itemBuilder: (context, index) => Genrescard(gnere: genres[index])),
     );
   }
+
+  static fromJson(decode) {}
 }

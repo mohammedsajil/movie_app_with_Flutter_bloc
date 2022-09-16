@@ -12,7 +12,7 @@ class BackdropAndRating extends StatelessWidget {
   }) : super(key: key);
 
   final Size size;
-  final Movie movie;
+  final Result movie;
   final double kDefaultPadding;
 
   @override
@@ -28,9 +28,8 @@ class BackdropAndRating extends StatelessWidget {
                     bottomLeft: Radius.circular(40),
                     bottomRight: Radius.circular(40)),
                 image: DecorationImage(
-                    image: AssetImage(
-                      '',
-                    ),
+                    image: NetworkImage(
+                        "https://image.tmdb.org/t/p/w500/${movie.posterPath!}"),
                     fit: BoxFit.fill)),
           ),
           Positioned(
@@ -69,13 +68,13 @@ class BackdropAndRating extends StatelessWidget {
                                 style: const TextStyle(color: Colors.black),
                                 children: [
                               TextSpan(
-                                text: '/',
+                                text: "${movie.voteAverage.toString()}/",
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 15),
                               ),
                               const TextSpan(text: '10\n'),
                               TextSpan(
-                                  text: '150,220',
+                                  text: movie.voteCount.toString(),
                                   style: TextStyle(color: Colors.grey[600]))
                             ]))
                       ],
@@ -110,9 +109,9 @@ class BackdropAndRating extends StatelessWidget {
                             color: const Color(0xFF51CF66),
                             borderRadius: BorderRadius.circular(3),
                           ),
-                          child: Text(
+                          child: const Text(
                             '',
-                            style: const TextStyle(
+                            style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 15,
                                 fontWeight: FontWeight.w500),
@@ -127,7 +126,7 @@ class BackdropAndRating extends StatelessWidget {
                               fontSize: 15, fontWeight: FontWeight.w500),
                         ),
                         Text(
-                          '62 critic reviews',
+                          '${movie.popularity} critic reviews',
                           style: TextStyle(color: Colors.grey[600]),
                         )
                       ],

@@ -2,9 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
+import 'package:movies_app_with_bloc/models/cast.dart';
 
 class CastCard extends StatelessWidget {
-  final Map cast;
+  final Cast cast;
   const CastCard({Key? key, required this.cast}) : super(key: key);
 
   @override
@@ -23,13 +24,17 @@ class CastCard extends StatelessWidget {
                 height: size.height / 11,
                 decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    image: DecorationImage(image: AssetImage(cast['image']))),
+                    image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: NetworkImage(cast.profilePath != null
+                            ? 'https://image.tmdb.org/t/p/w500/${cast.profilePath!}'
+                            : 'https://cdn-icons-png.flaticon.com/512/149/149071.png'))),
               ),
               SizedBox(
                 height: kDefaultPadding / 2,
               ),
               Text(
-                cast['orginalName'],
+                cast.name.toString(),
                 maxLines: 2,
                 textAlign: TextAlign.center,
                 style: const TextStyle(color: Colors.black87),
@@ -38,7 +43,7 @@ class CastCard extends StatelessWidget {
                 height: kDefaultPadding / 4,
               ),
               Text(
-                cast['movieName'],
+                cast.character.toString(),
                 maxLines: 1,
                 textAlign: TextAlign.center,
                 style: TextStyle(color: Colors.grey[600]),

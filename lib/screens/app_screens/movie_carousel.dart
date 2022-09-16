@@ -38,7 +38,9 @@ class _MovieCarouselState extends State<MovieCarousel> {
       builder: (context, state) {
         if (state is MoviesLoaded) {
           return Padding(
-            padding: EdgeInsets.symmetric(vertical: kDefaultPadding),
+            padding: EdgeInsets.symmetric(
+              vertical: kDefaultPadding,
+            ),
             child: AspectRatio(
               aspectRatio: 0.85,
               child: PageView.builder(
@@ -57,7 +59,7 @@ class _MovieCarouselState extends State<MovieCarousel> {
           print(state.errorText);
         }
         if (state is MoviesInitial) {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(),
           );
         }

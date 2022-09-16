@@ -5,7 +5,6 @@ import 'package:movies_app_with_bloc/screens/login/login_pass.dart';
 import 'package:movies_app_with_bloc/screens/login/widgets/signin_options.dart';
 import 'package:movies_app_with_bloc/screens/sign_up/sign_up.dart';
 import 'package:movies_app_with_bloc/screens/widgets/custom_button.dart';
-import 'package:email_validator/email_validator.dart';
 
 String? email;
 

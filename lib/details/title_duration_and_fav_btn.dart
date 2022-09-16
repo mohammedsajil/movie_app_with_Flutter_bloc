@@ -1,17 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import '../models/movie.dart';
 
-class TitleDurationAndFabBtn extends StatelessWidget {
-  const TitleDurationAndFabBtn({
+class TitleDurationAndFavBtn extends StatelessWidget {
+  const TitleDurationAndFavBtn({
     Key? key,
     required this.kDefaultPadding,
     required this.movie,
   }) : super(key: key);
 
   final double kDefaultPadding;
-  final Movie movie;
+  final Result movie;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,7 @@ class TitleDurationAndFabBtn extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '',
+                  movie.title!,
                   style: TextStyle(fontSize: 22, color: Colors.grey[900]),
                 ),
                 SizedBox(
@@ -34,7 +35,7 @@ class TitleDurationAndFabBtn extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      '{movie.year}',
+                      DateFormat('y').format(movie.releaseDate!.toLocal()),
                       style: const TextStyle(color: Colors.grey),
                     ),
                     SizedBox(

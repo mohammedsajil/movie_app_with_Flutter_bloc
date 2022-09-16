@@ -3,7 +3,7 @@ import '../models/movie.dart';
 import 'body.dart';
 
 class DetailsScreen extends StatelessWidget {
-  final Movie movie;
+  final Result movie;
   const DetailsScreen({Key? key, required this.movie}) : super(key: key);
 
   @override

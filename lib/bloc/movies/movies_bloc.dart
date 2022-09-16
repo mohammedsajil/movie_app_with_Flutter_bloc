@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:movies_app_with_bloc/api_key/api_key.dart';
 import 'package:movies_app_with_bloc/models/movie.dart';
 import 'package:http/http.dart' as http;
 
@@ -14,8 +15,8 @@ class MoviesBloc extends Bloc<MoviesEvent, MoviesState> {
     on<GetCarouselMovies>((event, emit) async {
       emit(MoviesInitial());
       try {
-        final url =
-            "https://api.themoviedb.org/3/trending/movie/day?api_key=a86de3acb7bba522ac5aa6ca93db263b";
+        const url =
+            "https://api.themoviedb.org/3/trending/movie/day?api_key=$apiKey";
         final response = await http.get(Uri.parse(url));
         if (response.statusCode == 200) {
           final movies = Movie.fromJson(json.decode(response.body));
