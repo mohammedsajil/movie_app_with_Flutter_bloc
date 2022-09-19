@@ -120,7 +120,7 @@ class _SignUpState extends State<SignUp> {
                             obscureText: !_showpassword,
                             decoration: InputDecoration(
                               contentPadding: const EdgeInsets.only(
-                                  left: 5, right: 5, top: 10),
+                                  left: 5, right: 5, top: 15),
                               hintText: "Password",
                               suffixIcon: IconButton(
                                   onPressed: () {
@@ -189,7 +189,7 @@ class _SignUpState extends State<SignUp> {
                                       email: email, password: password);
                               if (newUser != null) {
                                 // ignore: use_build_context_synchronously
-                                Navigator.push(
+                                Navigator.pushReplacement(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>

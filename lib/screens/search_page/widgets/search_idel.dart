@@ -20,8 +20,7 @@ class SearchIdleWidget extends StatelessWidget {
             const SizedBox(
               width: 5,
             ),
-            Expanded(
-                child: ListView.separated(
+            ListView.separated(
               shrinkWrap: true,
               itemBuilder: (context, index) {
                 return const TopSearchTile(
@@ -31,7 +30,7 @@ class SearchIdleWidget extends StatelessWidget {
               },
               separatorBuilder: (context, index) => kheight20,
               itemCount: 10,
-            )),
+            ),
           ],
         ),
       ),

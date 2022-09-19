@@ -18,6 +18,7 @@ class Loginpass extends StatefulWidget {
 class _LoginpassState extends State<Loginpass> {
   late String password;
   final _auth = FirebaseAuth.instance;
+  bool _showpassword = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -115,15 +116,27 @@ class _LoginpassState extends State<Loginpass> {
                               // border: Border.all(),
                               borderRadius: BorderRadius.circular(10)),
                           child: TextFormField(
+                            // textAlign: TextAlign.center,
                             onChanged: (value) {
                               password = value;
                             },
-                            obscureText: true,
+                            obscureText: !_showpassword,
                             decoration: InputDecoration(
-                              contentPadding:
-                                  const EdgeInsets.only(left: 5, right: 10),
+                              contentPadding: const EdgeInsets.only(
+                                  left: 5, right: 5, top: 15),
                               hintText: "Password",
-                              suffixText: "view",
+                              suffixIcon: IconButton(
+                                  onPressed: () {
+                                    setState(
+                                        () => _showpassword = !_showpassword);
+                                  },
+                                  icon: Icon(
+                                      _showpassword
+                                          ? Icons.visibility
+                                          : Icons.visibility_off,
+                                      color: _showpassword
+                                          ? Colors.blue
+                                          : Colors.grey)),
                               hoverColor: Colors.purple.shade900,
                               border: InputBorder.none,
                             ),

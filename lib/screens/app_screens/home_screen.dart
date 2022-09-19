@@ -1,7 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app_with_bloc/screens/app_screens/body.dart';
-import 'package:movies_app_with_bloc/screens/login/login.dart';
+import 'package:movies_app_with_bloc/screens/app_screens/main_drawer.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -11,11 +10,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final _navigatorKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _navigatorKey,
       backgroundColor: Colors.white,
       appBar: buildAppBar(context),
+      drawer: const MainDrawer(),
       body: const Body(),
     );
   }
@@ -33,40 +35,8 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Image.asset('assets/images/menu.png'),
         ),
         onPressed: () {
-          showDialog(
-            context: context,
-            builder: (BuildContext context) => AlertDialog(
-              title: const Text(
-                '  Signed In as',
-                style: TextStyle(fontSize: 16),
-              ),
-              actions: <Widget>[
-                const SizedBox(
-                  height: 9,
-                ),
-                Center(
-                  child: Text(FirebaseAuth.instance.currentUser!.email!,
-                      style: const TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold,
-                      )),
-                ),
-                const SizedBox(
-                  height: 40,
-                ),
-                ElevatedButton(
-                    onPressed: () {
-                      FirebaseAuth.instance.signOut();
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const Loginpage()),
-                      );
-                    },
-                    child: const Text('signout')),
-              ],
-            ),
-          );
+          // Scaffold.of(context).openDrawer();
+          _navigatorKey.currentState!.openDrawer();
         },
       ),
       // Search icon

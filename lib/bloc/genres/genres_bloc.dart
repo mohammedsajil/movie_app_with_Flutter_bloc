@@ -20,8 +20,7 @@ class GenresBloc extends Bloc<GenresEvent, GenresState> {
         final response = await http.get(Uri.parse(url));
         if (response.statusCode == 200) {
           final genres = Genres.fromJson(json.decode(response.body));
-          print("33333333333");
-          log('genres => ' + response.body.toString());
+          log('genres => ${response.body}');
           emit(GenresLoaded(genresList: genres.genres));
         }
       } catch (e) {

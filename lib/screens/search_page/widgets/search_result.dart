@@ -12,20 +12,19 @@ class SearchResultWidget extends StatelessWidget {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       const SearchTitle(title: 'Movies & TV'),
       kheight10,
-      Expanded(
-          child: GridView.count(
+      GridView.count(
         shrinkWrap: true,
         crossAxisCount: 3,
         mainAxisSpacing: 8,
         crossAxisSpacing: 8,
         childAspectRatio: 1 / 1.4,
-        children: List.generate(10, (index) {
+        children: List.generate(20, (index) {
           return const MainCard(
             imageUrl:
                 'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/vUUqzWa2LnHIVqkaKVlVGkVcZIW.jpg',
           );
         }),
-      ))
+      )
     ]);
   }
 }
