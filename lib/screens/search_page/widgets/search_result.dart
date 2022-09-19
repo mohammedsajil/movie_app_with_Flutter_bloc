@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:movies_app_with_bloc/constents.dart';
+import 'package:movies_app_with_bloc/models/movie.dart';
 import 'package:movies_app_with_bloc/screens/search_page/widgets/tilte.dart';
 
 class SearchResultWidget extends StatelessWidget {
@@ -9,21 +10,25 @@ class SearchResultWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Result movie;
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       const SearchTitle(title: 'Movies & TV'),
       kheight10,
-      GridView.count(
-        shrinkWrap: true,
-        crossAxisCount: 3,
-        mainAxisSpacing: 8,
-        crossAxisSpacing: 8,
-        childAspectRatio: 1 / 1.4,
-        children: List.generate(20, (index) {
-          return const MainCard(
-            imageUrl:
-                'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/vUUqzWa2LnHIVqkaKVlVGkVcZIW.jpg',
-          );
-        }),
+      SizedBox(
+        height: 588,
+        child: GridView.count(
+          shrinkWrap: true,
+          crossAxisCount: 3,
+          mainAxisSpacing: 8,
+          crossAxisSpacing: 8,
+          childAspectRatio: 1 / 1.4,
+          children: List.generate(20, (index) {
+            return const MainCard(
+              imageUrl:
+                  'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/vUUqzWa2LnHIVqkaKVlVGkVcZIW.jpg',
+            );
+          }),
+        ),
       )
     ]);
   }

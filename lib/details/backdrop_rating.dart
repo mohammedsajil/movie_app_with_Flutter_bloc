@@ -1,8 +1,14 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:animate_do/animate_do.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app_with_bloc/api_key/api_key.dart';
+import 'package:movies_app_with_bloc/bloc/videos/videos_bloc.dart';
+import 'package:movies_app_with_bloc/details/widget/youtubepplayer.dart';
 import '../models/movie.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class BackdropAndRating extends StatefulWidget {
   const BackdropAndRating({
@@ -22,6 +28,21 @@ class BackdropAndRating extends StatefulWidget {
 
 class _BackdropAndRatingState extends State<BackdropAndRating> {
   bool _rated = false;
+  YoutubePlayerController? videoController;
+
+  @override
+  void initState() {
+    super.initState();
+    BlocProvider.of<VideosBloc>(context)
+        .add(GetVideos(widget.movie.id.toString()));
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    videoController!.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     double? rating = widget.movie.voteAverage;
@@ -30,16 +51,67 @@ class _BackdropAndRatingState extends State<BackdropAndRating> {
       height: widget.size.height * 0.38,
       child: Stack(
         children: [
-          Container(
-            height: widget.size.height * 0.41 - 40,
-            decoration: BoxDecoration(
-                borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(40),
-                    bottomRight: Radius.circular(40)),
-                image: DecorationImage(
-                    image: NetworkImage(
-                        "https://image.tmdb.org/t/p/w500/${widget.movie.posterPath!}"),
-                    fit: BoxFit.fill)),
+          GestureDetector(
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) => AlertDialog(
+                  backgroundColor: Colors.blueGrey.shade200,
+                  title: Text(
+                    widget.movie.originalTitle.toString(),
+                    style: const TextStyle(fontSize: 16),
+                  ),
+                  actions: <Widget>[
+                    const SizedBox(
+                      height: 9,
+                    ),
+                    // YoutubePlayerController _controller = Y
+                    // YoutubePlayer(
+                    //   controller: _controller,
+                    //   liveUIColor: Colors.amber,
+                    // ),
+                    // const youtubePayer(),
+                    BlocBuilder<VideosBloc, VideosState>(
+                      builder: (context, state) {
+                        log('Video bloc state is $state');
+                        if (state is VideosLoaded) {
+                          videoController = YoutubePlayerController(
+                            initialVideoId: state.videoList[0].key!,
+                            flags: const YoutubePlayerFlags(
+                              autoPlay: true,
+                              mute: true,
+                            ),
+                          );
+                          return YoutubePlayerWidget(
+                            videoController: videoController,
+                            videopath: state.videoList[0].key!,
+                          );
+                        }
+                        return const SizedBox.shrink();
+                      },
+                    ),
+                    ElevatedButton(
+                        onPressed: () {
+                          videoController!.dispose();
+
+                          Navigator.pop(context, 'Close');
+                        },
+                        child: const Text('close')),
+                  ],
+                ),
+              );
+            },
+            child: Container(
+              height: widget.size.height * 0.41 - 40,
+              decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.only(
+                      bottomLeft: Radius.circular(40),
+                      bottomRight: Radius.circular(40)),
+                  image: DecorationImage(
+                      image: NetworkImage(
+                          "https://image.tmdb.org/t/p/w500/${widget.movie.posterPath!}"),
+                      fit: BoxFit.fill)),
+            ),
           ),
           Positioned(
             bottom: 0,

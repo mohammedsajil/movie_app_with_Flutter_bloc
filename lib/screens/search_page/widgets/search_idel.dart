@@ -1,13 +1,20 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app_with_bloc/constents.dart';
+import 'package:movies_app_with_bloc/models/movie.dart';
 import 'package:movies_app_with_bloc/screens/search_page/widgets/tilte.dart';
+
+import '../../../bloc/movies/movies_bloc.dart';
 
 class SearchIdleWidget extends StatelessWidget {
   const SearchIdleWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    BlocProvider.of<MoviesBloc>(context).add(GetCarouselMovies());
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -20,16 +27,37 @@ class SearchIdleWidget extends StatelessWidget {
             const SizedBox(
               width: 5,
             ),
-            ListView.separated(
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                return const TopSearchTile(
-                    imageUrl:
-                        'https://www.themoviedb.org/t/p/w600_and_h900_bestv2/6QXirTPUQecr1BAEfgVSXPD1np0.jpg',
-                    title: 'title');
-              },
-              separatorBuilder: (context, index) => kheight20,
-              itemCount: 10,
+            SizedBox(
+              // width: double.infinity,
+              height: 588,
+              child: BlocBuilder<MoviesBloc, MoviesState>(
+                builder: (context, state) {
+                  log(state.toString());
+                  if (state is MoviesLoaded) {
+                    return ListView.separated(
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) {
+                        return TopSearchTile(
+                            imageUrl:
+                                'https://image.tmdb.org/t/p/w500/${state.movieList.results![index].posterPath!}',
+                            title:
+                                state.movieList.results![index].originalTitle!);
+                      },
+                      separatorBuilder: (context, index) => kheight20,
+                      itemCount: state.movieList.results!.length,
+                    );
+                  }
+                  if (state is MoviesFailed) {
+                    log(state.errorText);
+                  }
+                  if (state is MoviesInitial) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  return Container();
+                },
+              ),
             ),
           ],
         ),
@@ -68,22 +96,24 @@ class TopSearchTile extends StatelessWidget {
               child: Text(
             title,
             style: const TextStyle(
-              color: kWhiteColor,
+              color: kBlackColor,
               fontWeight: FontWeight.bold,
               fontSize: 16,
             ),
           )),
+          // const CircleAvatar(
+          //   backgroundColor: kWhiteColor,
+          //   radius: 25,
           const CircleAvatar(
-            backgroundColor: kWhiteColor,
+            backgroundColor: kBlackColor,
             radius: 25,
-            child: CircleAvatar(
-              backgroundColor: kBlackColor,
-              radius: 23,
+            child: Center(
               child: Icon(
                 CupertinoIcons.play_fill,
                 color: kWhiteColor,
               ),
             ),
+            // ),
           )
         ],
       ),

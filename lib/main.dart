@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:movies_app_with_bloc/bloc/cast/cast_bloc.dart';
 import 'package:movies_app_with_bloc/bloc/genres/genres_bloc.dart';
 import 'package:movies_app_with_bloc/bloc/movies/movies_bloc.dart';
+import 'package:movies_app_with_bloc/bloc/videos/videos_bloc.dart';
 import 'package:movies_app_with_bloc/screens/login/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:movies_app_with_bloc/screens/main_page/screen_main.dart';
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
         BlocProvider<MoviesBloc>(create: (context) => MoviesBloc()),
         BlocProvider<GenresBloc>(create: (context) => GenresBloc()),
         BlocProvider<CastBloc>(create: (context) => CastBloc()),
+        BlocProvider<VideosBloc>(create: (context) => VideosBloc()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

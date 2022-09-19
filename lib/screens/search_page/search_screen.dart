@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:movies_app_with_bloc/constents.dart';
 import 'package:movies_app_with_bloc/screens/search_page/widgets/search_idel.dart';
+import 'package:movies_app_with_bloc/screens/search_page/widgets/search_result.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
@@ -25,8 +26,11 @@ class SearchScreen extends StatelessWidget {
               style: const TextStyle(color: Colors.white),
             ),
             kheight10,
-            // const SearchIdleWidget(),
-            const Expanded(child: SearchIdleWidget()),
+            const Expanded(
+              child:
+                  // SearchResultWidget(),
+                  SearchIdleWidget(),
+            ),
           ],
         ),
       )),
